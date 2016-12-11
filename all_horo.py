@@ -71,4 +71,5 @@ if __name__ == '__main__':
             year = int(a)
         else:
             usage()
+
     main(birth, year)

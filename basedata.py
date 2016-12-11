@@ -469,6 +469,15 @@ class AstroException(Exception):
 
 
 class BaseAstrology:
+    """
+
+    """
+    hour_animal_list = [
+        u'Кролик',
+        u'Дракон', u'Змея', u'Лошадь', u'Баран', u'Обезьяна',
+        u'Петух',
+        u'Собака', u'Свинья', u'Крыса', u'Корова', u'Тигр',
+    ]
     forces_list = (u'sog', u'lu', u'wang', u'lung', u'la')
     element_list = (u'Дерево', u'Огонь', u'Земля', u'Железо', u'Вода')
     animal_list = (

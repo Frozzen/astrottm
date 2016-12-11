@@ -259,10 +259,18 @@ class Branches15:
                 self.chart_stones[16][iy] = 'X/O'
 
     def print_stones(self):
-        print(self.ill_element)
+        print();
+        print("15 ветей элеименты")
+        for iy in range(4):
+            for ix in range(15):
+                print("%15.15s|" % self.chart_elements[ix][iy],end='')
+
+            print();
+        print();
+        print("Элемент заболевания:", self.ill_element)
         for iy in range(5):
             for ix in range(17):
-                print("%5.5s" % self.chart_stones[ix][iy],end='')
+                print("%5.5s|" % self.chart_stones[ix][iy],end='')
 
             print();
 def main():
