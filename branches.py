@@ -9,6 +9,7 @@ __author__ = 'vovva'
 import basedata
 
 
+
 class Branches15:
     """
     медицинский гороскоп 15 ветвей
@@ -273,6 +274,15 @@ class Branches15:
                 print("%5.5s|" % self.chart_stones[ix][iy],end='')
 
             print();
+
+class Branchaes15:
+    rules_rel = {u'Мать':'O', u'Друг':'O',
+                 u'Сын': 'X', u'Враг': 'X'}
+    rules_elem = {u'Земля:Земля':'O', u'Вода:Вода':'O',
+                  u'Огонь:Огонь':'X', u'Железо:Железо':'X', u'Дерево:Дерево':'X'}
+
+    def __init__(self, bitrh):
+        pass
 def main():
     pass
 
