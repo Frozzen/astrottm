@@ -58,16 +58,20 @@ class AstoHours:
         """
         s = self.get_sun(day)
         day_len = s['dusk'] - s['dawn']
-        hlen = day_len / 6.
-        nlen = (24 - day_len) / 6.
+        dlen = day_len.seconds / 6.
+        nlen = (24 - day_len.seconds) / 6.
         self.planets = {}
         # заполняем дневные часы
         cur_planet = 0
         hour = 0
         plan = {}
         for h in self.animal_list[:6]:
-            plan[h] = { 'start': (s['dawn'] + hlen * hour, self.planets[cur_planet])
+            plan[h] = { 'start': (s['dawn'] + datetime.timedelta(seconds=(dlen * hour)))
             }
+    def moon_phase(self, date = None):
+        if date is None:
+            date = datetime.date.today()
+        return self.astral.moon_phase(date) + 1
 
 
 def main():
@@ -81,6 +85,9 @@ def main():
     print('Sunset:  %s' % str(sun['sunset']))
     print('Dusk:    %s' % str(sun['dusk']))
     print(a.get_planets())
+    # 12.2016 ошибка надо делать +1
+    print('Moon phase=0:%s' % a.moon_phase())
+    print('Moon phase:%s' % a.moon_phase(datetime.date(2016, 11, 30)))
 
 if __name__ == '__main__':
     main()
