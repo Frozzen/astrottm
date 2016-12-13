@@ -4,6 +4,8 @@
 """
 from __future__ import print_function
 
+import datetime
+
 __author__ = 'vovva'
 
 import basedata
@@ -275,14 +277,58 @@ class Branches15:
 
             print();
 
-class Branchaes15:
+class Branches16:
+    """
+    16 ветвея прогноз для тяжелобольных
+    """
     rules_rel = {u'Мать':'O', u'Друг':'O',
                  u'Сын': 'X', u'Враг': 'X'}
     rules_elem = {u'Земля:Земля':'O', u'Вода:Вода':'O',
                   u'Огонь:Огонь':'X', u'Железо:Железо':'X', u'Дерево:Дерево':'X'}
 
     def __init__(self, bitrh):
-        pass
+        """
+        считаем на год рождения
+
+        :param bitrh:
+        """
+        self.astro = basedata.BaseAstrology(bitrh)
+        el = self.astro.get_elements()
+        self.el_subj = {"elts": u"%s:%s" % (el['wang'], el['animal']),
+            'sog': el['sog'], 'lu' : el['lu'] }
+
+    def calc(self, year=None, month=None, day=None, hour=None):
+
+        dt = datetime.datetime.now()
+        if year is None:
+            year = dt.year
+        if month is None:
+            month = dt.month
+        if day is None:
+            day = dt.day
+        if hour is None:
+            hour = dt.hour
+
+        el = self.astro.get_elements(year)
+        self.el_year = {"elts": u"%s:%s" % (el['wang'], el['animal']),
+            'sog': el['sog'], 'lu' : el['lu'] }
+        res = self.astro.get_months_of_year(year)
+        self.el_month = {"elts": u"%s:%s" % (el['wang'], el['animal']),
+            'sog': el['sog'], 'lu' : el['lu'] }
+        res = self.astro.get_days_of_month((u'Огонь', u'Тигр', u'мужской'))
+        self.el_day = {"elts": u"%s:%s" % (el['wang'], el['animal']),
+            'sog': el['sog'], 'lu' : el['lu'] }
+        res = self.astro.get_hours_of_day((15, u'Огонь', u'Тигр'))
+        self.el_hour = {"elts": u"%s:%s" % (el['wang'], el['animal']),
+            'sog': el['sog'], 'lu' : el['lu'] }
+
+        res = self.astro.get_tarkut(year, month, day, hour)
+        self.tark_year = {'sogtarkut': 7, 'wangtarkut': 3, 'lungtarkut': 11, 'lutarkut':0}
+        self.tark_month = ''
+        self.tark_day = ''
+        self.tark_hour = ''
+
+
 def main():
     pass
 
