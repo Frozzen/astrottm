@@ -212,14 +212,14 @@ data_relations = u"""Дерево:Вода:Мать
 Железо:Огонь:Враг
 Вода:Земля:Враг"""
 
-data_parka = u"""ли:огонь:младшая дочь:Ю
-кхон:земля:мать:ЮЗ
-та:железо:младший сын:З
-кхен:земля:отец:СЗ
-кхам:вода:внук:С
-кин:земля:старший сын:СВ
-син:дерево:внучка:В
-сон:земля:старшая дочь:ЮВ"""
+data_parka = u"""ли:огонь:младшая дочь:Ю:огонь
+кхон:земля:мать:ЮЗ:земля
+та:железо:младший сын:З:железо
+кхен:земля:отец:СЗ:земля
+кхам:вода:внук:С:вода
+кин:земля:старший сын:СВ:земля
+син:дерево:внучка:В:дерево
+сон:земля:старшая дочь:ЮВ:земля"""
 
 data_parka_directions = u"""3:4:12:4:3:21:12:22:3
 1:сон:23:2:ли:12:13:кхон:4
@@ -647,7 +647,7 @@ class BaseAstrology:
                 cross[nm] = self.get_relations(rfrom[f], rto[t])
         return cross
 
-    def get_parka(self, year, sex='man'):
+    def get_parka(self, year, sex='man', element = False):
         """
         вычислить текущую парка года
 
@@ -657,10 +657,16 @@ class BaseAstrology:
         """
         if sex == 'man':
             ix = divmod(year - self.birth_year, 8)[1]
-            return self.parka[ix - 1][0]
+            s = self.parka[ix - 1][0]
+            if element:
+                s += ' ' + self.parka[ix - 1][4]
+            return s
         else:
             ix = divmod(year - self.birth_year + 2, 8)[1]
-            return self.parka[7 - ix][0]
+            s = self.parka[7 - ix][0]
+            if element:
+                s += ' ' + self.parka[7 - ix][4]
+            return s
 
     def get_parka_direction(self, parka):
         """
