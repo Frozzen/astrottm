@@ -38,12 +38,13 @@ __author__ = 'goncharov'
 import basedata
 
 def main():
-        a = basedata.BaseAstrology(1959)
-        print("#2 жпгр:", a.get_elements()['animal'])
         a = basedata.BaseAstrology(1960)
+        print("#2 жпгр:", a.get_elements()['animal'])
+        a = basedata.BaseAstrology(1969)
         e = a.get_elements()
         print(u"#3 5 инд.сил: Сог:%s Лю:%s Ван:%s Лун:%s Ла:%s" % (e['sog'], e['lu'], e['wang'], e['lung'], e['la']))
-        print(u"#4 парка Мужчины:%s 18и, женщины:%s 43" % (a.get_parka(1960+18), a.get_parka(1960+43)))
+
+        print(u"#4 парка Мужчины:%s 18и, женщины:%s 43" % (a.get_parka(1969+18), a.get_parka(1969+43, 'woman')))
         a = basedata.BaseAstrology(1970)
         m = a.get_mevas(2001)
         print(u"#5 мева рожденого в 1970 на 2001: согме:%s люме:%s ванме:%s лунме:%s павме:%s "
