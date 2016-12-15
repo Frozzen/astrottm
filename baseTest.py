@@ -107,7 +107,7 @@ class TestBaseAstrology(unittest.TestCase):
 
         a = basedata.BaseAstrology(1972)
         l = a.get_logmen(2001, 'woman')
-        self.assertEqual(l, (u'Огонь', u'Лошадь'))
+        self.assertEqual(l, (u'Вода', u'Дракон'))
 
     def test_month(self):
         a = basedata.BaseAstrology(1924)
