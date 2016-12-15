@@ -47,6 +47,17 @@ class TestBranches(unittest.TestCase):
         for i in range(17):
             self.assertEqual(tuple(a.chart_stones[i]), res[i])
 
+    def test_16branches(self):
+        a = branches.Branches16(1974)
+        a.calc(2000, 5, 7, 5)
+        a.print_el()
+        self.assertEqual(a.el_year,{})
+        self.assertEqual(a.el_month,{})
+        self.assertEqual(a.el_day,{})
+        self.assertEqual(a.el_hour,{})
+        self.assertEqual(a.tarkut,{})
+
+
 if __name__ == '__main__':
     unittest.main()
 

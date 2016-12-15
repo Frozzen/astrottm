@@ -497,7 +497,7 @@ class BaseAstrology:
     tarkut = [(1, '-', u'Взять дыхание'), (2, '-', u'Матка'),
               (3, '+', u'Формирование тела'), (4, '+', u'Побеги'), (5, '+', u'Омовение'),
               (6, '+', u'Одевание'), (7, '+', u'Деятельность'), (8, '+', u'Процветание'),
-              (9, '-', u'Упадок'), (10, '-', u'Болезнь'), (1, '-', u'Смерть'), (1, '-', u'Кладбище'),
+              (9, '-', u'Упадок'), (10, '-', u'Болезнь'), (11, '-', u'Смерть'), (12, '-', u'Кладбище'),
               ]
     # кладбище лоя элементов в животном знаке
     tarkut_animal = {u'Железо': u'Корова',
@@ -846,6 +846,12 @@ class BaseAstrology:
             el = self.__rotate_element(el, 1)
         return res
 
+    def find_tarkut_str(self, tarkut):
+
+        a = filter(lambda x: x[0] == tarkut, self.tarkut)
+        return a[0]
+
+
     def get_tarkut(self, year, month, day, hour):
         """
         посчитать все таркуты
@@ -917,6 +923,7 @@ class BaseAstrology:
             return u'Сила'
         if rel in (u'Мать', u'Друг', u'Враг', u'Сын'):
             return rel
+
 
 
 if __name__ == "__main__":
