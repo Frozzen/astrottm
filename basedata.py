@@ -769,8 +769,8 @@ class BaseAstrology:
         :param count:
         :return:
         """
-        ix = self.element_list.index(from_element)
-        ix = (ix + count) % 5
+        eix = self.element_list.index(from_element)
+        ix = (eix * 2 + count) % 5
         return self.element_list[ix]
 
     def get_logmen(self, year, sex='man'):

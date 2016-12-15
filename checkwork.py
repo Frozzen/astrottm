@@ -44,7 +44,8 @@ def main():
         e = a.get_elements()
         print(u"#3 5 инд.сил: Сог:%s Лю:%s Ван:%s Лун:%s Ла:%s" % (e['sog'], e['lu'], e['wang'], e['lung'], e['la']))
 
-        print(u"#4 парка Мужчины:%s 18и, женщины:%s 43" % (a.get_parka(1969+18), a.get_parka(1969+43, 'woman')))
+        print(u"#4 парка Мужчины:%s 18и, женщины:%s 43" % (a.get_parka(1969+18, element=True),
+                                                           a.get_parka(1969+43, 'woman', True)))
         a = basedata.BaseAstrology(1970)
         m = a.get_mevas(2001)
         print(u"#5 мева рожденого в 1970 на 2001: согме:%s люме:%s ванме:%s лунме:%s павме:%s "
@@ -53,10 +54,10 @@ def main():
         m = a.get_mevas(2001)
         print(u"#5 мева рожденого в 1967 на 2001: согме:%s люме:%s ванме:%s лунме:%s павме:%s "
               % (m['sogme'], m['lume'], m['wangme'], m['lunme'], m['pawme']))
-        a = basedata.BaseAstrology(2001-43)
+        a = basedata.BaseAstrology(1958)
         l = a.get_logmen(2001)
         print(u"#6 логмен мужчины 43х на 2001: %s %s" % (l[0], l[1]))
-        a = basedata.BaseAstrology(2001-29)
+        a = basedata.BaseAstrology(1972)
         l = a.get_logmen(2001, 'woman')
         print(u"#6 логмен женщины 29х на 2001: %s %s" % (l[0], l[1]))
 
