@@ -2,6 +2,8 @@
 
 from __future__ import print_function
 
+import fruit
+
 __author__ = 'goncharov'
 
 import unittest
@@ -22,10 +24,10 @@ class TestBranches(unittest.TestCase):
         self.assertEqual(a.chart_elements[4], [u'Дерево:Дракон',u'Земля',u'Огонь',u'Дерево',u'Дерево'])
         self.assertEqual(a.chart_elements[5], [u'Земля:Дракон',u'Земля',u'Дерево',u'Земля',u'Дерево'])
 
-        self.assertEqual(a.chart_elements[6], [u'Дерево:Бык',u'Земля',u'Железо',u'Дерево',u'Вода'])
-        self.assertEqual(a.chart_elements[7], [u'Огонь:Бык',u'Земля',u'Вода',u'Огонь',u'Вода'])
-        self.assertEqual(a.chart_elements[8], [u'Земля:Бык',u'Земля',u'Огонь',u'Земля',u'Вода'])
-        self.assertEqual(a.chart_elements[9], [u'Железо:Бык',u'Земля',u'Земля',u'Железо',u'Вода'])
+        self.assertEqual(a.chart_elements[6], [u'Дерево:Корова',u'Земля',u'Железо',u'Дерево',u'Вода'])
+        self.assertEqual(a.chart_elements[7], [u'Огонь:Корова',u'Земля',u'Вода',u'Огонь',u'Вода'])
+        self.assertEqual(a.chart_elements[8], [u'Земля:Корова',u'Земля',u'Огонь',u'Земля',u'Вода'])
+        self.assertEqual(a.chart_elements[9], [u'Железо:Корова',u'Земля',u'Земля',u'Железо',u'Вода'])
         self.assertEqual(a.chart_elements[10], [u'Земля:Свинья',u'Вода',u'Дерево',u'Земля',u'Огонь'])
 
         self.assertEqual(a.chart_elements[11], [u'Железо:Петух',u'Железо',u'Дерево',u'Железо',u'Вода'])
@@ -47,8 +49,8 @@ class TestBranches(unittest.TestCase):
         for i in range(17):
             self.assertEqual(tuple(a.chart_stones[i]), res[i])
 
-    def test_16branches(self):
-        a = branches.Branches16(1974)
+    def test_16fruits(self):
+        a = fruit.Fruit16(1974)
         a.calc(2000, 5, 7, 5)
         a.print_el()
         self.assertEqual(a.el_year,{})
