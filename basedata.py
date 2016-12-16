@@ -499,7 +499,7 @@ class BaseAstrology:
               (6, '+', u'Одевание'), (7, '+', u'Деятельность'), (8, '+', u'Процветание'),
               (9, '-', u'Упадок'), (10, '-', u'Болезнь'), (11, '-', u'Смерть'), (12, '-', u'Кладбище'),
               ]
-    # кладбище лоя элементов в животном знаке
+    # кладбище для элементов в животном знаке
     tarkut_animal = {u'Железо': u'Корова',
                      u'Земля': u'Дракон', u'Вода': u'Дракон',
                      u'Дерево': u'Баран',
@@ -869,16 +869,18 @@ class BaseAstrology:
             el = self.__rotate_element(el, 2)
         return res
 
-    def find_tarkut_str(self, tarkut):
+    def find_tarkut_str(self, tar):
 
-        a = filter(lambda x: x[0] == tarkut, self.tarkut)
+        a = filter(lambda x: x[0] == tar, self.tarkut)
         return a[0]
 
     def get_tarkut_el(self, element, animal):
         """
-        посчитать таркут по животному признаку
+        низкоуровневый рассчет посчитать таркут по животному признаку
+
+        :param element:
         :param animal:
-        :return:
+        :return: int
         """
         cem = self.tarkut_animal[element]
         an = self.__rotate_animal(cem, 1)

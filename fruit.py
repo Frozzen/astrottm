@@ -146,7 +146,7 @@ class Fruit16:
                self.el_day['sog'], self.el_day['sogstone'],
                self.el_hour['sog'], self.el_hour['sogstone']))
         print("%15.15s|%9.9s|%5.5s|%9.9s|%5.5s|%9.9s|%5.5s|%9.9s|%5.5s|" %
-              ('' , self.el_year['sogtarkut'],  self.el_year['sogtarkut'],
+              ('' , self.el_year['sogtarkut'],  self.el_year['sogtarkutstone'],
                self.el_month['sogtarkut'],self.el_month['sogtarkutstone'],
                self.el_day['sogtarkut'],self.el_day['sogtarkutstone'],
                self.el_hour['sogtarkut'], self.el_hour['sogtarkutstone']))
