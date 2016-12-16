@@ -49,7 +49,7 @@ def main():
         a = basedata.BaseAstrology(1973)
         m = a.get_months_of_year(1973)
         d = a.get_days_of_month(m[6])
-        h = a.get_hours_of_day(d[15])
+        h = a.get_hours_of_day(d[16])
         print(u"#7 признаки месяца:%s дня:%s часа:%s родившегося в год водяного быка перед рассветом" %
               (m[6][0]+' '+m[6][1], d[16][1]+' '+d[16][2], h[11][1]+' '+h[11][2]))
 
