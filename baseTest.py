@@ -115,6 +115,14 @@ class TestBaseAstrology(unittest.TestCase):
 
     def test_month(self):
         a = basedata.BaseAstrology(1924)
+
+        m = a.get_months_of_year(1973)
+        self.assertEqual(m[6], (u'Железо', u'Обезьяна', u'мужской'))
+        d = a.get_days_of_month(m[6])
+        self.assertEqual(d[16], (17, u'Дерево', u'Лошадь'))
+        h = a.get_hours_of_day(d[16])
+        self.assertEqual(h[11], (12, u'Земля', u'Тигр'))
+
         res = a.get_months_of_year(1925)
         self.assertEqual(res, [
             (u'Огонь', u'Тигр', u'мужской'), (u'Огонь', u'Кролик', u'женский'),

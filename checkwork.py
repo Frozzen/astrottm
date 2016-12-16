@@ -51,7 +51,7 @@ def main():
         d = a.get_days_of_month(m[6])
         h = a.get_hours_of_day(d[15])
         print(u"#7 признаки месяца:%s дня:%s часа:%s родившегося в год водяного быка перед рассветом" %
-              (m[6][0]+' '+m[6][1], d[6][1]+' '+d[6][2], h[11][1]+' '+h[11][2]))
+              (m[6][0]+' '+m[6][1], d[16][1]+' '+d[16][2], h[11][1]+' '+h[11][2]))
 
         a = basedata.BaseAstrology(1970)
         t = a.get_tarkut(1970, 5, 17, 7)
@@ -61,6 +61,17 @@ def main():
         a = basedata.BaseAstrology(1950)
         t = a.get_tribal(u'Вода')
         print(u"#9 Качество родового элемента вода для человека 1950 гр:%s" % t)
+
+        a = basedata.BaseAstrology(1970)
+        l = a.get_logmen(2016, 'man')
+        p = a.get_parka(2016, 'man')
+        pm = a.get_mevas(2016)['pawme']
+        print(u"#доп муж: 1976гр на 2016 логмен:%s %s, парка:%s, павме:%s" % (l[0], l[1], p, pm))
+
+        l = a.get_logmen(2016, 'woman')
+        p = a.get_parka(2016, 'woman')
+        pm = a.get_mevas(2016)['pawme']
+        print(u"#доп жен: 1976гр на 2016 логмен:%s %s, парка:%s, павме:%s" % (l[0], l[1], p, pm))
 
 
 if __name__ == '__main__':
