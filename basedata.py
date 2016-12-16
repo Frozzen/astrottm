@@ -573,14 +573,30 @@ class BaseAstrology:
 
     def get_elements(self, year=None):
         """
-        вернуть 5 базовых элементов
-        ;bdjyjt
-        :param year:
+        вернуть 5 базовых элементов по году
+
+        :param year: если нет - год рождения
         :return:
         """
         if year is None:
             year = self.birth_year
         return self.elements[year]
+
+    def get_elements_by(self, element, animal):
+        """
+        получить пареметры sog, lu, wng, lun, la по животному признаку и элементу
+
+        :param element: элементу
+        :param animal: животному признаку
+        :return:
+        """
+        #e = dict(filter(lambda x: x[1] == element, data_animal_recode.items())).keys()
+        e = element
+        for y, v in self.elements.iteritems():
+            if e == v['wang'] and animal == v['animal']:
+                return v
+        raise AstroException("no such elemnts:animal '%s:%s'" % (element, animal))
+
 
     def get_relations(self, rfrom, rto):
         """
@@ -858,6 +874,21 @@ class BaseAstrology:
         a = filter(lambda x: x[0] == tarkut, self.tarkut)
         return a[0]
 
+    def get_tarkut_el(self, element, animal):
+        """
+        посчитать таркут по животному признаку
+        :param animal:
+        :return:
+        """
+        cem = self.tarkut_animal[element]
+        an = self.__rotate_animal(cem, 1)
+        for i in range(12):
+            if an == animal:
+                return i+1
+            an = self.__rotate_animal(an, 1)
+
+        raise AstroException("no animal:%s" % animal)
+
 
     def get_tarkut(self, year, month, day, hour):
         """
@@ -930,7 +961,6 @@ class BaseAstrology:
             return u'Сила'
         if rel in (u'Мать', u'Друг', u'Враг', u'Сын'):
             return rel
-
 
 
 if __name__ == "__main__":

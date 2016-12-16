@@ -57,31 +57,41 @@ class Fruit16:
         dt = datetime.datetime.now()
         if year is None:
             year = dt.year
+        # TODO получить лунный месяц
         if month is None:
             month = dt.month
         else:
             month -=1
+        # TODO получить лунный день
         if day is None:
             day = dt.day
         else:
             day -=1
+        # TODO получить правильный час
         if hour is None:
             hour = dt.hour
         else:
             hour -=1
 
+        # посчитали элементы
         el = self.astro.get_elements(year)
         self.el_year = {"elts": u"%s:%s" % (el['wang'], el['animal']),
-            'sog': el['sog'], 'lu' : el['lu'] }
+            'sog': el['sog'], 'lu' : el['lu'], 'animal': el['animal'] }
+
         res_mnth = self.astro.get_months_of_year(year)
+        el = self.astro.get_elements_by(res_mnth[month][0], res_mnth[month][1])
         self.el_month = {"elts": u"%s:%s" % (res_mnth[month][0], res_mnth[month][1]),
-            'sog': el['sog'], 'lu' : el['lu'] }
+            'sog': el['sog'], 'lu' : el['lu'], 'animal': el['animal'] }
+
         res_day = self.astro.get_days_of_month(res_mnth[month])
+        el = self.astro.get_elements_by(res_day[day][1], res_day[day][2])
         self.el_day = {"elts": u"%s:%s" % (res_day[day][1], res_day[day][2]),
-            'sog': el['sog'], 'lu' : el['lu'] }
+            'sog': el['sog'], 'lu' : el['lu'], 'animal': el['animal'] }
+
         res_hr = self.astro.get_hours_of_day(res_day[day])
+        el = self.astro.get_elements_by(res_hr[hour][1], res_hr[hour][2])
         self.el_hour = {"elts": u"%s:%s" % (res_hr[hour][1], res_hr[hour][2]),
-            'sog': el['sog'], 'lu' : el['lu'] }
+            'sog': el['sog'], 'lu' : el['lu'], 'animal': el['animal'] }
 
         self.el_year['sogstone'] = self.find_elem_stone(self.el_subj['sog'], self.el_year['sog'])
         self.el_month['sogstone'] = self.find_elem_stone(self.el_subj['sog'], self.el_month['sog'])
@@ -93,31 +103,34 @@ class Fruit16:
         self.el_day['lustone'] = self.find_elem_stone(self.el_subj['lu'], self.el_day['lu'])
         self.el_hour['lustone'] = self.find_elem_stone(self.el_subj['lu'], self.el_hour['lu'])
 
+        # посчитали таркут
+        res = self.astro.get_tarkut_el(self.el_year['sog'], self.el_year['animal'])
+        self.el_year['sogtarkut'] = self.astro.find_tarkut_str(res)[2]
+        self.el_year['sogtarkutstone'] = self.astro.find_tarkut_str(res)[1]
+        res = self.astro.get_tarkut_el(self.el_year['lu'], self.el_year['animal'])
+        self.el_year['lutarkut'] = self.astro.find_tarkut_str(res)[2]
+        self.el_year['lutarkutstone'] = self.astro.find_tarkut_str(res)[1]
 
-        res_mnth = self.astro.get_tarkut(year, month, day, hour)
-        self.el_year['sogtarkut'] = self.astro.find_tarkut_str(res_mnth['sogtarkut'])[2]
-        self.el_year['sogtarkutstone'] = self.astro.find_tarkut_str(res_mnth['sogtarkut'])[1]
-        self.el_year['lutarkut'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[2]
-        self.el_year['lutarkutstone'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[1]
-        self.el_month['sogtarkut'] = self.astro.find_tarkut_str(res_mnth['sogtarkut'])[2]
-        self.el_month['sogtarkutstone'] = self.astro.find_tarkut_str(res_mnth['sogtarkut'])[1]
-        self.el_month['lutarkut'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[2]
-        self.el_month['lutarkutstone'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[1]
-        self.el_day['sogtarkut'] = self.astro.find_tarkut_str(res_mnth['sogtarkut'])[2]
-        self.el_day['sogtarkutstone'] = self.astro.find_tarkut_str(res_mnth['sogtarkut'])[1]
-        self.el_day['lutarkut'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[2]
-        self.el_day['lutarkutstone'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[1]
-        self.el_hour['sogtarkut'] = self.astro.find_tarkut_str(res_mnth['sogtarkut'])[2]
-        self.el_hour['sogtarkutstone'] = self.astro.find_tarkut_str(res_mnth['sogtarkut'])[1]
+        res = self.astro.get_tarkut_el(self.el_month['sog'], self.el_month['animal'])
+        self.el_month['sogtarkut'] = self.astro.find_tarkut_str(res)[2]
+        self.el_month['sogtarkutstone'] = self.astro.find_tarkut_str(res)[1]
+        res = self.astro.get_tarkut_el(self.el_month['lu'], self.el_month['animal'])
+        self.el_month['lutarkut'] = self.astro.find_tarkut_str(res)[2]
+        self.el_month['lutarkutstone'] = self.astro.find_tarkut_str(res)[1]
 
-        self.el_year['lutarkut'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[2]
-        self.el_year['lutarkutstone'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[1]
-        self.el_month['lutarkut'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[2]
-        self.el_month['lutarkutstone'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[1]
-        self.el_day['lutarkut'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[2]
-        self.el_day['lutarkutstone'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[1]
-        self.el_hour['lutarkut'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[2]
-        self.el_hour['lutarkutstone'] = self.astro.find_tarkut_str(res_mnth['lutarkut'])[1]
+        res = self.astro.get_tarkut_el(self.el_day['sog'], self.el_day['animal'])
+        self.el_day['sogtarkut'] = self.astro.find_tarkut_str(res)[2]
+        self.el_day['sogtarkutstone'] = self.astro.find_tarkut_str(res)[1]
+        res = self.astro.get_tarkut_el(self.el_day['lu'], self.el_day['animal'])
+        self.el_day['lutarkut'] = self.astro.find_tarkut_str(res)[2]
+        self.el_day['lutarkutstone'] = self.astro.find_tarkut_str(res)[1]
+
+        res = self.astro.get_tarkut_el(self.el_hour['sog'], self.el_hour['animal'])
+        self.el_hour['sogtarkut'] = self.astro.find_tarkut_str(res)[2]
+        self.el_hour['sogtarkutstone'] = self.astro.find_tarkut_str(res)[1]
+        res = self.astro.get_tarkut_el(self.el_hour['lu'], self.el_hour['animal'])
+        self.el_hour['lutarkut'] = self.astro.find_tarkut_str(res)[2]
+        self.el_hour['lutarkutstone'] = self.astro.find_tarkut_str(res)[1]
 
     def print_el(self):
         print()
