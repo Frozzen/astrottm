@@ -772,11 +772,11 @@ class BaseAstrology:
         просчитать по элементам с иходного и получить новый
 
         :param from_element:
-        :param count:
+        :param count: на сколько повернуть - 2 счета на один элемент
         :return:
         """
         eix = self.element_list.index(from_element)
-        ix = (eix * 2 + count) % 5
+        ix = (eix + int(0.5 + count/2)) % 5
         return self.element_list[ix]
 
     def get_logmen(self, year, sex='man'):
@@ -794,7 +794,7 @@ class BaseAstrology:
             s_el = self.find_relative(el, u'Сын')
             element = self.__rotate_element(s_el, age)
         else:
-            animal = self.animal_list[7 - (6 - age) % 12]
+            animal = self.animal_list[(7 - age) % 12]
             el = self.get_elements(self.birth_year)['wang']
             s_el = self.find_relative(el, u'Мать')
             element = self.__rotate_element(s_el, -age)
@@ -813,7 +813,7 @@ class BaseAstrology:
         for i in range(6):
             elements.append(el)
             elements.append(el)
-            el = self.__rotate_element(el, 1)
+            el = self.__rotate_element(el, 2)
         res = []
         for i in range(12):
             res.append((elements[i], self.animal_list[i], self.year_sex[self.animal_list[i]]))
@@ -835,7 +835,7 @@ class BaseAstrology:
         res = []
         for d in range(30):
             res.append((d + 1, el, animal))
-            el = self.__rotate_element(el, 1)
+            el = self.__rotate_element(el, 2)
             animal = self.__rotate_animal(animal, 1)
         return res
 
@@ -850,7 +850,7 @@ class BaseAstrology:
         res = []
         for h in range(12):
             res.append((h + 1, el, self.hour_animal_list[h]))
-            el = self.__rotate_element(el, 1)
+            el = self.__rotate_element(el, 2)
         return res
 
     def find_tarkut_str(self, tarkut):

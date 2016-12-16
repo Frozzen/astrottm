@@ -96,7 +96,7 @@ class TestBaseAstrology(unittest.TestCase):
     def test_logmen(self):
         a = basedata.BaseAstrology(1970)
         l = a.get_logmen(2000, 'man')
-        self.assertEqual(l, (u'Железо', u'Баран'))
+        self.assertEqual(l, (u'Вода', u'Баран'))
         a = basedata.BaseAstrology(1968)
         l = a.get_logmen(2001, 'man')
         self.assertEqual(l, (u'Вода', u'Собака'))
@@ -104,6 +104,10 @@ class TestBaseAstrology(unittest.TestCase):
         a = basedata.BaseAstrology(1974)
         l = a.get_logmen(2001, 'woman')
         self.assertEqual(l, (u'Огонь', u'Лошадь'))
+
+        a = basedata.BaseAstrology(1958)
+        l = a.get_logmen(2001, 'man')
+        self.assertEqual(l, (u'Вода', u'Обезьяна'))
 
         a = basedata.BaseAstrology(1972)
         l = a.get_logmen(2001, 'woman')
