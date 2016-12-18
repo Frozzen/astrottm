@@ -527,10 +527,10 @@ class BaseAstrology:
         for l in data_5elements.split('\n'):
             a = l.split(':')
             self.elements[int(a[0])] = {'animal': a[2], 'sog': a[3], 'lu': a[4], 'wang': a[5], 'lung': a[6], 'la': a[7]}
-        startY = min(self.elements.keys())
+        start_y = min(self.elements.keys())
         for y in range(1, 120):
-            self.elements[startY - 120 + y] = self.elements[startY + y]
-            self.elements[startY + 120 + y] = self.elements[startY + y]
+            self.elements[start_y - 120 + y] = self.elements[start_y + y]
+            self.elements[start_y + 120 + y] = self.elements[start_y + y]
 
         self.relations = {}
         for l in data_relations.split('\n'):

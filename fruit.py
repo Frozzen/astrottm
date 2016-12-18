@@ -104,31 +104,31 @@ class Fruit16:
         self.el_hour['lustone'] = self.find_elem_stone(self.el_subj['lu'], self.el_hour['lu'])
 
         # посчитали таркут
-        res = self.astro.get_tarkut_el(self.el_year['sog'], self.el_year['animal'])
+        res = self.astro.get_tarkut_el(self.el_subj['sog'], self.el_year['animal'])
         self.el_year['sogtarkut'] = self.astro.find_tarkut_str(res)[2]
         self.el_year['sogtarkutstone'] = self.astro.find_tarkut_str(res)[1]
-        res = self.astro.get_tarkut_el(self.el_year['lu'], self.el_year['animal'])
+        res = self.astro.get_tarkut_el(self.el_subj['lu'], self.el_year['animal'])
         self.el_year['lutarkut'] = self.astro.find_tarkut_str(res)[2]
         self.el_year['lutarkutstone'] = self.astro.find_tarkut_str(res)[1]
 
-        res = self.astro.get_tarkut_el(self.el_month['sog'], self.el_month['animal'])
+        res = self.astro.get_tarkut_el(self.el_subj['sog'], self.el_month['animal'])
         self.el_month['sogtarkut'] = self.astro.find_tarkut_str(res)[2]
         self.el_month['sogtarkutstone'] = self.astro.find_tarkut_str(res)[1]
-        res = self.astro.get_tarkut_el(self.el_month['lu'], self.el_month['animal'])
+        res = self.astro.get_tarkut_el(self.el_subj['lu'], self.el_month['animal'])
         self.el_month['lutarkut'] = self.astro.find_tarkut_str(res)[2]
         self.el_month['lutarkutstone'] = self.astro.find_tarkut_str(res)[1]
 
-        res = self.astro.get_tarkut_el(self.el_day['sog'], self.el_day['animal'])
+        res = self.astro.get_tarkut_el(self.el_subj['sog'], self.el_day['animal'])
         self.el_day['sogtarkut'] = self.astro.find_tarkut_str(res)[2]
         self.el_day['sogtarkutstone'] = self.astro.find_tarkut_str(res)[1]
-        res = self.astro.get_tarkut_el(self.el_day['lu'], self.el_day['animal'])
+        res = self.astro.get_tarkut_el(self.el_subj['lu'], self.el_day['animal'])
         self.el_day['lutarkut'] = self.astro.find_tarkut_str(res)[2]
         self.el_day['lutarkutstone'] = self.astro.find_tarkut_str(res)[1]
 
-        res = self.astro.get_tarkut_el(self.el_hour['sog'], self.el_hour['animal'])
+        res = self.astro.get_tarkut_el(self.el_subj['sog'], self.el_hour['animal'])
         self.el_hour['sogtarkut'] = self.astro.find_tarkut_str(res)[2]
         self.el_hour['sogtarkutstone'] = self.astro.find_tarkut_str(res)[1]
-        res = self.astro.get_tarkut_el(self.el_hour['lu'], self.el_hour['animal'])
+        res = self.astro.get_tarkut_el(self.el_subj['lu'], self.el_hour['animal'])
         self.el_hour['lutarkut'] = self.astro.find_tarkut_str(res)[2]
         self.el_hour['lutarkutstone'] = self.astro.find_tarkut_str(res)[1]
 
