@@ -19,6 +19,9 @@
 """
 from __future__ import print_function
 
+import branches
+import fruit
+
 __author__ = 'goncharov'
 import basedata
 
@@ -73,6 +76,14 @@ def main():
         pm = a.get_mevas(2016)['pawme']
         print(u"#доп жен: 1976гр на 2016 логмен:%s %s, парка:%s, павме:%s" % (l[0], l[1], p, pm))
 
+        a = branches.Branches15(1963, u'Земля', 'man')
+        a.compute(2016)
+        a.do_stones()
+        a.print_stones()
+
+        a = fruit.Fruit16(1963)
+        a.calc(2016, 7)
+        a.print_el()
 
 if __name__ == '__main__':
     main()

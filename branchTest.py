@@ -14,7 +14,7 @@ __author__ = 'vovva'
 
 class TestBranches(unittest.TestCase):
     def test_15braches(self):
-        a = branches.Branches15(1974, 0, 'man')
+        a = branches.Branches15(1974, u'Дерево', 'man')
         self.assertEqual(a.chart_elements[0], [u'Дерево:Тигр', u'Дерево', u'Вода', u'Дерево', u'Железо'])
 
         a.compute(2000)

@@ -69,7 +69,7 @@ class Fruit16:
             day -=1
         # TODO получить правильный час
         if hour is None:
-            hour = dt.hour
+            hour = dt.hour/2
         else:
             hour -=1
 

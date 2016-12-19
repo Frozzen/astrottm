@@ -23,11 +23,16 @@ class Branches15:
         """
 
         :param year: год рождения персоны
-        :param itype: 0-5
+        :param itype: u'Дерево', u'Огонь', u'Земля', u'Железо', u'Вода'
         :param sex: пол
         :return:
         """
-        self.ill_element = self.ill_types[itype]
+        if not(itype in self.ill_types):
+            raise basedata.AstroException("incorrect element of ill:%s" % itype)
+        if not(sex in ['man', 'woman']):
+            raise basedata.AstroException("incorrect sex of :%s" % sex)
+
+        self.ill_element = itype
         self.sex = sex
         # элементы
         self.chart_elements = [['' for x in range(5)] for y in range(16)]
@@ -130,7 +135,7 @@ class Branches15:
         self.chart_elements[7][4] = el['lung']
 
         # 8 сломалось волшебное дерево - жизненная сила ребенка
-        do_from[u'Земля'] = u'Бык'
+        do_from[u'Земля'] = u'Корова'
         el = self.wang
         y = self.astro.find_year(el, do_from[self.ill_element])
         y -= year - self.astro.birth_year
@@ -215,6 +220,7 @@ class Branches15:
     def do_stones(self):
         """
         вычислить камни для гороскопа исходя из вычисленных элементов
+
         :return:
         """
 
@@ -262,15 +268,20 @@ class Branches15:
                 self.chart_stones[16][iy] = 'X/O'
 
     def print_stones(self):
+        """
+        напечатать элементы и камни гороскопа
+        :return:
+        """
+
         print();
-        print("15 ветей элеименты")
+        print("Элемент заболевания:", self.ill_element)
+        print("15 ветей элементы")
         for iy in range(4):
             for ix in range(15):
                 print("%15.15s|" % self.chart_elements[ix][iy],end='')
 
             print();
         print();
-        print("Элемент заболевания:", self.ill_element)
         for iy in range(5):
             for ix in range(17):
                 print("%5.5s|" % self.chart_stones[ix][iy],end='')
