@@ -726,6 +726,13 @@ class BaseAstrology:
         return l, new_meva_rect
 
     def __find_in_mentreng(self, animal_metreng, birth_metreng):
+        """
+        алгоритм без коррекции на элемент рождения
+
+        :param animal_metreng:
+        :param birth_metreng: номер метренга
+        :return:
+        """
         for y, v in self.metreng.iteritems():
             if v['year'] == animal_metreng and v['metreng'] == birth_metreng:
                 return y
