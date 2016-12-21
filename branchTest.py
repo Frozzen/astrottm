@@ -48,6 +48,7 @@ class TestBranches(unittest.TestCase):
         a.do_stones()
         for i in range(17):
             self.assertEqual(tuple(a.chart_stones[i]), res[i])
+        a.print_all()
 
     def test_16fruits(self):
         a = fruit.Fruit16(1974)

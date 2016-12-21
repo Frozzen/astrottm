@@ -48,6 +48,7 @@ class Branches15:
         self.chart_elements[0][2] = el['lu']
         self.wang = self.chart_elements[0][3] = el['wang']
         self.chart_elements[0][4] = el['lung']
+        self.brth_year = el['year']
 
     def compute(self, year):
         """
@@ -68,8 +69,8 @@ class Branches15:
         # 2 ветвь Жилище утрачивается ? - жрец астролог - вред астрологу
         do_from = {u'Дерево': u'Тигр', u'Огонь': u'Лошадь', u'Земля': u'Дракон', u'Железо': u'Обезьяна',
                    u'Вода': u'Крыса'}
-        el = self.astro.find_relative(self.wang, u'Враг')
-        y = self.astro.find_year(el, do_from[self.ill_element])
+        elf = self.astro.find_relative(self.wang, u'Враг')
+        y = self.astro.find_year(elf, do_from[self.ill_element])
         y += year - self.astro.birth_year
         el = self.astro.get_elements(y)
         self.chart_elements[2][0] = "%s:%s" % (el['wang'], el['animal'])
@@ -267,22 +268,24 @@ class Branches15:
             else:
                 self.chart_stones[16][iy] = 'X/O'
 
-    def print_stones(self):
+    def print_all(self):
         """
         напечатать элементы и камни гороскопа
         :return:
         """
 
-        print();
-        print("Элемент заболевания:", self.ill_element)
+        print(u"Элемент заболевания:%s" % (self.ill_element))
         print("15 ветей элементы")
-        for iy in range(4):
-            for ix in range(15):
+        for iy in range(5):
+            for ix in range(16):
                 print("%15.15s|" % self.chart_elements[ix][iy],end='')
 
             print();
+        self.print_stones()
+
+    def print_stones(self):
         print();
-        for iy in range(5):
+        for iy in range(6):
             for ix in range(17):
                 print("%5.5s|" % self.chart_stones[ix][iy],end='')
 

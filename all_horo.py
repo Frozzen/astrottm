@@ -51,7 +51,7 @@ def main(birth_year, year):
         ba = branches.Branches15(birth_year, i, 'man')
         ba.compute(year)
         ba.do_stones()
-        ba.print_stones()
+        ba.print_all()
 
 
 

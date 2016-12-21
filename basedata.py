@@ -270,7 +270,7 @@ data_meva_rect = u"""4:9:2
 3:5:7
 8:1:6"""
 
-data_animal_recode = {
+data_element_recode_1 = {
     u'Деревянный': u'Дерево',
     u'Деревянная': u'Дерево',
     u'Огненный': u'Огонь',
@@ -282,6 +282,7 @@ data_animal_recode = {
     u'Водяной': u'Вода',
     u'Водяная': u'Вода',
 }
+
 data_metreng = u"""1:1864:1:Деревянная Крыса
 9:1865:1:Деревянный Корова
 8:1866:1:Огненный Тигр
@@ -526,8 +527,10 @@ class BaseAstrology:
         self.elements = {}
         for l in data_5elements.split('\n'):
             a = l.split(':')
-            self.elements[int(a[0])] = {'animal': a[2], 'sog': a[3], 'lu': a[4], 'wang': a[5], 'lung': a[6], 'la': a[7]}
+            self.elements[int(a[0])] = {'animal': a[2], 'sog': a[3], 'lu': a[4], 'wang': a[5],
+                                        'lung': a[6], 'la': a[7], 'year':a[1]}
         start_y = min(self.elements.keys())
+        # добили таблицу на 120 лет
         for y in range(1, 120):
             self.elements[start_y - 120 + y] = self.elements[start_y + y]
             self.elements[start_y + 120 + y] = self.elements[start_y + y]
