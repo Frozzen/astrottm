@@ -62,7 +62,7 @@ def main():
         t = a.get_tribal(u'Вода')
         print(u"#9 Качество родового элемента вода для человека 1950 гр:%s" % t)
 
-        a = basedata.BaseAstrology(1970)
+        a = basedata.BaseAstrology(1976)
         l = a.get_logmen(2016, 'man')
         p = a.get_parka(2016, 'man')
         pm = a.get_mevas(2016)['pawme']
