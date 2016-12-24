@@ -14,14 +14,15 @@ class TestBaseAstrology(unittest.TestCase):
         j = a.get_elements()
         self.assertEqual(a.birth_year, 1963)
         res = {'animal': u'Кролик', 'sog': u'Дерево', 'lu': u'Железо', 'wang': u'Вода',
-               'lung': u'Огонь', 'la': u'Вода'}
+               'lung': u'Огонь', 'la': u'Вода', 'year': u'Водяной'}
         self.assertEqual(j, res)
 
         a = basedata.BaseAstrology(1984)
         j = a.get_elements()
         self.assertEqual(a.birth_year, 1984)
         res = {'animal': u'Крыса', 'sog': u'Вода', 'lu': u'Железо',
-               'wang': u'Дерево', 'lung': u'Дерево', 'la': u'Железо'}
+               'wang': u'Дерево', 'lung': u'Дерево', 'la': u'Железо',
+               'year':u'Деревянная'}
         self.assertEqual(j, res)
 
     def test_relations(self):
@@ -94,22 +95,22 @@ class TestBaseAstrology(unittest.TestCase):
         self.assertEqual(m, res)
 
     def test_logmen(self):
-        a = basedata.BaseAstrology(1970)
+        a = basedata.BaseAstrology(1971)
         l = a.get_logmen(2000, 'man')
         self.assertEqual(l, (u'Вода', u'Баран'))
-        a = basedata.BaseAstrology(1968)
+        a = basedata.BaseAstrology(1969)
         l = a.get_logmen(2001, 'man')
         self.assertEqual(l, (u'Вода', u'Собака'))
 
-        a = basedata.BaseAstrology(1974)
+        a = basedata.BaseAstrology(1975)
         l = a.get_logmen(2001, 'woman')
         self.assertEqual(l, (u'Огонь', u'Лошадь'))
 
-        a = basedata.BaseAstrology(1958)
+        a = basedata.BaseAstrology(1959)
         l = a.get_logmen(2001, 'man')
         self.assertEqual(l, (u'Вода', u'Обезьяна'))
 
-        a = basedata.BaseAstrology(1972)
+        a = basedata.BaseAstrology(1973)
         l = a.get_logmen(2001, 'woman')
         self.assertEqual(l, (u'Вода', u'Дракон'))
 

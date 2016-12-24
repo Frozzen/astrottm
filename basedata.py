@@ -808,12 +808,13 @@ class BaseAstrology:
     def get_logmen(self, year, sex='man'):
         """
         вычислить логмен для года
+        считается для тибетских годов - западный возраст + 1
 
         :param year:
         :param sex:
         :return:
         """
-        age = year - self.birth_year
+        age = year - self.birth_year + 1
         if sex == 'man':
             animal = self.animal_list[age % 12 - 1]
             el = self.get_elements(self.birth_year)['wang']
